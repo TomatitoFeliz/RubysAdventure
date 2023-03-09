@@ -10,11 +10,7 @@ public class DamageZone : MonoBehaviour
 
         if (controller != null)
         {
-            if (controller.health < controller.maxHealth)
-            {
-                controller.ChangeHealth(-1);
-            }
-
+            controller.ChangeHealth(-1);
         }
     }
 }
