@@ -5,6 +5,10 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     Rigidbody2D rigidbody2D;
+    Vector3 position;
+
+    public GameObject golpe;
+
     void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -21,6 +25,7 @@ public class Projectile : MonoBehaviour
         if (e != null)
         {
             e.Fix();
+            Instantiate(golpe, transform.position, Quaternion.identity );
         }
 
         Destroy(gameObject);
