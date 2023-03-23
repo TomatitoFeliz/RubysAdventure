@@ -159,6 +159,10 @@ PrefabInstance:
       propertyPath: healthObtain
       value: 
       objectReference: {fileID: 7339854884971672801}
+    - target: {fileID: 8638823479611528786, guid: d7a25a681c6e19d40bfa79f6a61b7745, type: 3}
+      propertyPath: collectedClip
+      value: 
+      objectReference: {fileID: 8300000, guid: af5f8b64e3f58f24c87ff8f789b04f6c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7a25a681c6e19d40bfa79f6a61b7745, type: 3}
 --- !u!4 &5242391956889417388 stripped

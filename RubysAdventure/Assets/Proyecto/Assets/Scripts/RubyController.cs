@@ -21,6 +21,10 @@ public class RubyController : MonoBehaviour
 
     Rigidbody2D rigidbody2d;
 
+    private AudioSource audioSource;
+    public AudioClip shootClip;
+    public AudioClip damageClip;
+
     private void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
@@ -28,6 +32,12 @@ public class RubyController : MonoBehaviour
         currentHealth = maxHealth;
 
         animator = GetComponent <Animator>();
+
+        audioSource = GetComponent<AudioSource>();
+    }
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 
     private void Update()
@@ -74,13 +84,13 @@ public class RubyController : MonoBehaviour
         {
             if (isInvincible)
                 return;
-
+             PlaySound(damageClip);
              isInvincible = true;
              invincibleTimer = timeInvincible;
             
         }
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-        Debug.Log(currentHealth + "/" + maxHealth);
+        UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
     }
 
     void Launch()
@@ -91,5 +101,7 @@ public class RubyController : MonoBehaviour
         projectile.Launch(lookDirection, 300);
 
         animator.SetTrigger("Launch");
+
+        PlaySound(shootClip);
     }
 }

@@ -17,14 +17,23 @@ public class EnemyController : MonoBehaviour
     Animator animator;
 
     bool broken = true;
+
+    private AudioSource audioSource;
+    public AudioClip fixedClip;
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         timer = changeTime;
         animator = GetComponent<Animator>();
+
+        audioSource = GetComponent<AudioSource>();
+    }
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 
-    void Update()
+void Update()
     {
         if (!broken)
         {
@@ -56,6 +65,7 @@ public class EnemyController : MonoBehaviour
 
 
         rigidbody2D.MovePosition(position);
+
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -73,5 +83,8 @@ public class EnemyController : MonoBehaviour
         broken = false;
         rigidbody2D.simulated = false;
         smokeEffect.Stop();
+
+        animator.SetTrigger("Fixed");
+        PlaySound(fixedClip);
     }
 }
